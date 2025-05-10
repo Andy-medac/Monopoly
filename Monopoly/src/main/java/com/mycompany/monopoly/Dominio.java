@@ -23,9 +23,9 @@ public class Dominio extends Casilla { // o zona en español
         if (j.getDinero() >= this.precio) {
             j.modificarDinero(-this.precio);
             this.propietario = j;
-            System.out.println("¡Felicidades! Has comprado " + this.nombre + " por " + this.precio + " ME.");
+            System.out.println("Con tu oro y tu espada, has reclamado " + this.nombre + " por " + this.precio + " ME como tuyo.");
         } else {
-            System.out.println("No tienes suficiente dinero para comprar este dominio.");
+            System.out.println("Tus cofres estan vacios. No puedes reclamar estas tierras aún.");
         }
     }
 
