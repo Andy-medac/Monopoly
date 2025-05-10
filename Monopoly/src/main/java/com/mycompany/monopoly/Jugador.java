@@ -4,7 +4,7 @@ public class Jugador {
 
     private String nombre;
     private int casilla;
-    private int dinero;
+    private double dinero;
     private boolean carcel;
     private int condena;
 
@@ -12,7 +12,7 @@ public class Jugador {
     public Jugador(String nombre) {
         this.nombre = nombre;
         this.casilla = 0;
-        this.dinero = 100;
+        this.dinero = 100.0d;
         this.carcel = false;
         this.condena = 0;
     }
@@ -33,15 +33,15 @@ public class Jugador {
         this.casilla = casilla;
     }
 
-    public int getDinero() {
+    public double getDinero() {
         return this.dinero;
     }
 
-    public void setDinero(int dinero) {
-        this.dinero = dinero;
+    public void modificarDinero(double cantidad) {
+        this.dinero += cantidad;
     }
 
-    public boolean isCarcel() {
+    public boolean getCarcel() {
         return this.carcel;
     }
 
@@ -49,17 +49,23 @@ public class Jugador {
         this.carcel = carcel;
     }
 
-    public int getTurnosSinJugar() {
+    public int getCondena() {
         return this.condena;
     }
 
-    public void setTurnosSinJugar(int turnosSinJugar) {
-        this.condena = condena;
+    public void setCondena(int turnosSinJugar) {
+        this.condena = turnosSinJugar;
     }
 
     @Override
     public String toString() {
-        return "Nombre: " + this.nombre + "/ Posición en tablero: " + this.casilla + " / Dinero: " + this.dinero + " ME / Esta en la carcel: " + this.carcel;
+        String siONo = "";
+        if (carcel){
+           siONo = "Si"; 
+        } else{
+            siONo = "No";
+        }
+        return "Nombre: " + this.nombre + "/ Posición en tablero: " + this.casilla + " / Dinero: " + this.dinero + " ME / Esta en la carcel: " + siONo;
     }
 
     public void jugadorEnCarcel() { // Si el jugador cae en la casilla cárcel, se activa el atributo y tiene 1 turno sin jugar
