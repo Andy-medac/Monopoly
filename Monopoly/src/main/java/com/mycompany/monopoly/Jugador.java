@@ -33,15 +33,15 @@ public class Jugador {
         this.casilla = casilla;
     }
 
-    public double getDinero() {
+    public int getDinero() {
         return this.dinero;
     }
 
-    public void modificarDinero(double cantidad) {
+    public void modificarDinero(int cantidad) {
         this.dinero += cantidad;
     }
 
-    public boolean getCarcel() {
+    public boolean getMazmorra() {
         return this.mazmorra;
     }
 

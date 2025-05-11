@@ -1,5 +1,7 @@
 package com.mycompany.monopoly;
 
+import java.util.Scanner;
+
 public class Dominio extends Casilla { // o zona en español
 
     private int precio;
@@ -33,16 +35,24 @@ public class Dominio extends Casilla { // o zona en español
         }
     }
     @Override
-    public void hacerAccion(Jugador j) {
-        if (estaDisponible()) { //si es true, está sin conquistar.
-            System.out.println("Has llegado a " + this.nombre + ". Puedes conquistarlo por " + this.precio + " ME.");
-        } else if (this.propietario != j) { // si es false, tienes que pagar a su propietario el 10% de su precio.
-            int pago = this.precio / 10;
-            j.modificarDinero(-pago);
-            propietario.modificarDinero(pago);
-            System.out.println("Este dominio pertenece a " + this.propietario.getNombre() + ". Pagas " + pago + " ME.");
+public void hacerAccion(Jugador j) {
+    if (estaDisponible()) {
+        System.out.println("Has llegado a " + this.nombre + ". Puedes conquistarlo por " + this.precio + " ME.");
+        System.out.print("¿Quieres comprarlo? (s/n): ");
+        Scanner sc = new Scanner(System.in);
+        String respuesta = sc.nextLine();
+        if (respuesta.equalsIgnoreCase("s")) {
+            comprar(j);
         } else {
-            System.out.println("¡Descansa y recupera fuerzas! Llegaste a " + this.nombre);
+            System.out.println("Decides no reclamar estas tierras... por ahora.");
         }
+    } else if (this.propietario != j) {
+        int pago = this.precio / 10;
+        j.modificarDinero(-pago);
+        propietario.modificarDinero(pago);
+        System.out.println("Este dominio pertenece a " + this.propietario.getNombre() + ". Pagas " + pago + " ME.");
+    } else {
+        System.out.println("¡Descansa y recupera fuerzas! Llegaste a " + this.nombre);
     }
+}
 }
