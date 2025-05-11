@@ -5,7 +5,7 @@ public class Jugador {
     private String nombre;
     private int casilla;
     private int dinero;
-    private boolean carcel;
+    private boolean mazmorra;
     private int condena;
 
     //solo recibe el nombre ya que los demás atributos tienen valores predeterminados
@@ -13,7 +13,7 @@ public class Jugador {
         this.nombre = nombre;
         this.casilla = 0;
         this.dinero = 100;
-        this.carcel = false;
+        this.mazmorra = false;
         this.condena = 0;
     }
 
@@ -42,11 +42,11 @@ public class Jugador {
     }
 
     public boolean getCarcel() {
-        return this.carcel;
+        return this.mazmorra;
     }
 
     public void setCarcel(boolean carcel) {
-        this.carcel = carcel;
+        this.mazmorra = carcel;
     }
 
     public int getCondena() {
@@ -60,7 +60,7 @@ public class Jugador {
     @Override
     public String toString() {
         String siONo = "";
-        if (carcel){
+        if (mazmorra){
            siONo = "Si"; 
         } else{
             siONo = "No";
@@ -68,8 +68,8 @@ public class Jugador {
         return "Nombre: " + this.nombre + "/ Posición en tablero: " + this.casilla + " / Dinero: " + this.dinero + " ME / Esta en la carcel: " + siONo;
     }
 
-    public void jugadorEnCarcel() { // Si el jugador cae en la casilla cárcel, se activa el atributo y tiene 1 turno sin jugar
-        this.carcel = true;
+    public void jugadorEnMazmorra() { // Si el jugador cae en la casilla cárcel, se activa el atributo y tiene 1 turno sin jugar
+        this.mazmorra = true;
         this.condena = 1;
     }
 
@@ -77,7 +77,7 @@ public class Jugador {
         if (condena > 0) { // Si la condena es mayor que 0, le resta un turno sin jugar.
             condena--;
             if (condena == 0) { // Si la condena ya es 0, entonces el jugador sale de la cárcel.
-                carcel = false;
+                mazmorra = false;
             }
         }
     }

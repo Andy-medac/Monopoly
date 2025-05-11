@@ -12,7 +12,7 @@ public class CasillaIrMazmorra extends Casilla {
     @Override
     public void hacerAccion(Jugador j) {
         j.setCasilla(this.posicionMazmorra);  // Mueve al jugador a la cárcel
-        j.jugadorEnCarcel();              // Lo deja sin turno
+        j.jugadorEnMazmorra();              // Lo deja sin turno
         System.out.println("El clan rival te acusa de traicion. Cumpliras condena en la mazmorra");
     }
 }
