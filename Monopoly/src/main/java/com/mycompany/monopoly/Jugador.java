@@ -4,7 +4,7 @@ public class Jugador {
 
     private String nombre;
     private int casilla;
-    private double dinero;
+    private int dinero;
     private boolean carcel;
     private int condena;
 
@@ -12,7 +12,7 @@ public class Jugador {
     public Jugador(String nombre) {
         this.nombre = nombre;
         this.casilla = 0;
-        this.dinero = 100.0d;
+        this.dinero = 100;
         this.carcel = false;
         this.condena = 0;
     }

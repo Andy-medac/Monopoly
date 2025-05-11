@@ -20,6 +20,10 @@ public class Dominio extends Casilla { // o zona en español
     }
 
     public void comprar(Jugador j) {
+        if (!estaDisponible()) {
+            System.out.println("Este dominio ya tiene dueño.");
+            return;
+        }
         if (j.getDinero() >= this.precio) {
             j.modificarDinero(-this.precio);
             this.propietario = j;
@@ -28,7 +32,6 @@ public class Dominio extends Casilla { // o zona en español
             System.out.println("Tus cofres estan vacios. No puedes reclamar estas tierras aún.");
         }
     }
-
     @Override
     public void hacerAccion(Jugador j) {
         if (estaDisponible()) { //si es true, está sin conquistar.

@@ -6,9 +6,12 @@ public class Mazmorra extends Casilla {
         super(nombre, posicion);
     }
 
-    @Override
-    public void hacerAccion(Jugador j) {
-        j.jugadorEnCarcel();
-        System.out.println("El clan rival te acusa de traicion. Cumpliras condena en la mazmorra.");
+@Override
+    public void hacerAccion(Jugador jugador) {
+        if (jugador.getCarcel()) {
+            System.out.println("Estás cumpliendo tu castigo en la mazmorra del Shogun.");
+        } else {
+            System.out.println("Has llegado a la mazmorra del Shogun, pero solo estás de visita.");
+        }
     }
 }
