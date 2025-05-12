@@ -22,37 +22,39 @@ public class Dominio extends Casilla { // o zona en español
     }
 
     public void comprar(Jugador j) {
-        if (!estaDisponible()) {
+        if (!estaDisponible()) { //por si acaso volvemos a comprobar si está disponible
             System.out.println("Este dominio ya tiene dueño.");
             return;
         }
-        if (j.getDinero() >= this.precio) {
+        if (j.getDinero() >= this.precio) { // en el caso de que tenga suficiente dinero, se compra
             j.modificarDinero(-this.precio);
             this.propietario = j;
             System.out.println("Con tu oro y tu espada, has reclamado " + this.nombre + " por " + this.precio + " ME como tuyo.");
-        } else {
+        } else { // si no tiene dinero no puede comprarla
             System.out.println("Tus cofres estan vacios. No puedes reclamar estas tierras aún.");
         }
     }
+
     @Override
-public void hacerAccion(Jugador j) {
-    if (estaDisponible()) {
-        System.out.println("Has llegado a " + this.nombre + ". Puedes conquistarlo por " + this.precio + " ME.");
-        System.out.print("¿Quieres comprarlo? (s/n): ");
+    public void hacerAccion(Jugador j) {
         Scanner sc = new Scanner(System.in);
-        String respuesta = sc.nextLine();
-        if (respuesta.equalsIgnoreCase("s")) {
-            comprar(j);
+        
+        if (estaDisponible()) {
+            System.out.println("Has llegado a " + this.nombre + ". Puedes conquistarlo por " + this.precio + " ME.");
+            System.out.print("¿Quieres comprarlo? (s/n): ");
+            String respuesta = sc.nextLine();
+            if (respuesta.equalsIgnoreCase("s")) { // si introduce S o s, la compra
+                comprar(j);
+            } else {
+                System.out.println("Decides no reclamar estas tierras... por ahora.");
+            }
+        } else if (this.propietario != j) { //si es propiedad de otro jugador, debe pagar el 10% de su precio de compra
+            int pago = this.precio / 10;
+            j.modificarDinero(-pago); //se resta de su cantidad de dinero total
+            this.propietario.modificarDinero(pago);
+            System.out.println("Este dominio pertenece a " + this.propietario.getNombre() + ". Pagas " + pago + " ME.");
         } else {
-            System.out.println("Decides no reclamar estas tierras... por ahora.");
+            System.out.println("¡Descansa y recupera fuerzas! Llegaste a " + this.nombre);
         }
-    } else if (this.propietario != j) {
-        int pago = this.precio / 10;
-        j.modificarDinero(-pago);
-        propietario.modificarDinero(pago);
-        System.out.println("Este dominio pertenece a " + this.propietario.getNombre() + ". Pagas " + pago + " ME.");
-    } else {
-        System.out.println("¡Descansa y recupera fuerzas! Llegaste a " + this.nombre);
     }
-}
 }
