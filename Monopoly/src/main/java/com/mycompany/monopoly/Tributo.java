@@ -13,7 +13,7 @@ public class Tributo extends Casilla {
     public void hacerAccion(Jugador j) {
         j.modificarDinero(-cantidad);
         Santuario.añadirAlBote(cantidad); // se acumula en la casilla del santuario
-        System.out.println("Pagas un tributo de " + cantidad + " ME. Este dinero se envía al Santuario del Clan.");
+        System.out.println("Pagas un tributo de " + cantidad + " ME. Este dinero se envia al Santuario del Clan.");
     }
 }
 

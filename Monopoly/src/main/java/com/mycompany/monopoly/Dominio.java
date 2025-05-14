@@ -2,7 +2,7 @@ package com.mycompany.monopoly;
 
 import java.util.Scanner;
 
-public class Dominio extends Casilla { // o zona en español
+public class Dominio extends Casilla {
 
     private int precio;
     private Jugador propietario;
@@ -33,17 +33,26 @@ public class Dominio extends Casilla { // o zona en español
         } else { // si no tiene dinero no puede comprarla
             System.out.println("Tus cofres estan vacios. No puedes reclamar estas tierras aún.");
         }
+        System.out.println("");
     }
 
     @Override
     public void hacerAccion(Jugador j) {
         Scanner sc = new Scanner(System.in);
-        
+        String respuesta = "";
+
         if (estaDisponible()) {
             System.out.println("Has llegado a " + this.nombre + ". Puedes conquistarlo por " + this.precio + " ME.");
-            System.out.print("¿Quieres comprarlo? (s/n): ");
-            String respuesta = sc.nextLine();
-            if (respuesta.equalsIgnoreCase("s")) { // si introduce S o s, la compra
+
+            do {
+                System.out.print("¿Quieres conquistarlo? (s/n): ");
+                respuesta = sc.nextLine();
+                if (!respuesta.equalsIgnoreCase("s") && !respuesta.equalsIgnoreCase("n")) {
+                    System.out.println("Por favor, responde solo con s o n.");
+                }
+            } while (!respuesta.equalsIgnoreCase("s") && !respuesta.equalsIgnoreCase("n"));
+
+            if (respuesta.equals("s")) {    // si introduce s, la compra
                 comprar(j);
             } else {
                 System.out.println("Decides no reclamar estas tierras... por ahora.");
